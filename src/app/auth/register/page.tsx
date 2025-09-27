@@ -95,7 +95,7 @@ export default function RegisterPage() {
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-6">
-          <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-16 h-16" />
+          <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-16 h-16 object-contain" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Join Tadabbur

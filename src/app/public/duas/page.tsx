@@ -80,7 +80,7 @@ export default function PublicDuasPage() {
               <Link href="/">
                 <ArrowLeft className="w-6 h-6 text-gray-600 dark:text-gray-400" />
               </Link>
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8" />
+              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
               <span className="text-xl font-bold gradient-text">Tadabbur</span>
             </div>
             

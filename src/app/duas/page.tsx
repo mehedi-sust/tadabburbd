@@ -9,6 +9,7 @@ import UserDropdown from '@/components/user-dropdown'
 import { authUtils } from '@/lib/auth'
 import { duasAPI } from '@/lib/api'
 import toast from 'react-hot-toast'
+import ReportContent from '@/components/ReportContent'
 
 interface Dua {
   id: string
@@ -23,6 +24,8 @@ interface Dua {
   user_id?: string
   native_language?: string  // User's native language
   likes_count?: number
+  author_name?: string
+  user_name?: string
 }
 
 export default function DuasPage() {
@@ -241,7 +244,7 @@ export default function DuasPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8" />
+                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
                 <span className="text-xl font-bold gradient-text">Tadabbur</span>
               </div>
               
@@ -373,27 +376,6 @@ export default function DuasPage() {
                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {dua.title}
                           </h3>
-                          {/* Visible verification status */}
-                          {dua.is_verified ? (
-                            <div className="flex items-center space-x-1">
-                              <CheckCircle2 className="w-4 h-4 text-green-500" />
-                              <span className="text-xs text-green-600 dark:text-green-400 font-medium">
-                                Verified
-                              </span>
-                            </div>
-                          ) : (
-                            <div className="flex items-center space-x-1">
-                              <XCircle className="w-4 h-4 text-gray-400" />
-                              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                                Pending
-                              </span>
-                            </div>
-                          )}
-                          {dua.user_id === user?.id && (
-                            <span className="text-xs bg-primary-100 text-primary-600 px-2 py-1 rounded-full dark:bg-primary-900 dark:text-primary-400">
-                              My Dua
-                            </span>
-                          )}
                         </div>
                         <div className="flex items-center space-x-2">
                           {dua.is_public ? (
@@ -413,11 +395,13 @@ export default function DuasPage() {
                       {dua.arabic_text && (
                         <div className="mb-4 relative overflow-hidden py-4 min-h-[3rem]">
                           {dua.arabic_text.length > 80 ? (
-                            <div className="scrolling-text text-center text-xl text-gray-900 dark:text-white arabic-font px-3">
-                              {dua.arabic_text}
+                            <div className="w-full text-center">
+                              <div className="scrolling-text text-3xl text-gray-900 dark:text-white arabic-font">
+                                {dua.arabic_text}
+                              </div>
                             </div>
                           ) : (
-                              <div className="text-center text-xl text-gray-900 dark:text-white arabic-font py-2">
+                              <div className="text-center text-3xl text-gray-900 dark:text-white arabic-font py-2">
                                 {dua.arabic_text}
                               </div>
                             )}
@@ -425,39 +409,67 @@ export default function DuasPage() {
                       )}
 
                       {(dua.native_meaning || dua.english_meaning) && (
-                        <div className="mb-4">
-                          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
-                            {dua.native_meaning || dua.english_meaning}
-                          </p>
+                        <div className="mb-4 relative overflow-hidden py-2 min-h-[2.5rem]">
+                          {(() => {
+                            const meaning = dua.native_meaning || dua.english_meaning;
+                            return meaning && meaning.length > 100 ? (
+                              <div className="w-full text-center">
+                                <div className="scrolling-text-bangla text-base text-gray-600 dark:text-gray-300">
+                                  {meaning}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="text-center text-base text-gray-600 dark:text-gray-300 py-1">
+                                {meaning}
+                              </div>
+                            );
+                          })()}
                         </div>
                       )}
 
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          {new Date(dua.created_at).toLocaleDateString()}
-                        </span>
-                        <div className="flex items-center space-x-2">
-                          <button
-                            onClick={(e) => handleLike(dua.id, e)}
-                            className="flex items-center space-x-1 hover:scale-105 transition-transform"
-                          >
-                            <Heart 
-                              className={`w-4 h-4 ${
-                                likedDuas.has(dua.id) 
-                                  ? 'text-red-500 fill-current' 
-                                  : 'text-gray-400 hover:text-red-500'
-                              }`} 
-                            />
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                              {likesCount[dua.id] !== undefined ? likesCount[dua.id] : (dua.likes_count || 0)}
-                            </span>
-                          </button>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
                   <div className="mt-auto border-t border-gray-200 dark:border-dark-200 px-6 py-3 bg-gray-50 dark:bg-dark-200">
+                    {/* Status and Author Info */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <span className={`px-2 py-1 text-xs rounded-full ${
+                          dua.is_verified 
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                            : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                        }`}>
+                          {dua.is_verified ? 'Verified' : 'Pending'}
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          by {dua.author_name || dua.user_name || 'Unknown'}
+                        </span>
+                        {dua.user_id === user?.id && (
+                          <span className="text-xs bg-primary-100 text-primary-600 px-2 py-1 rounded-full dark:bg-primary-900 dark:text-primary-400">
+                            My Dua
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={(e) => handleLike(dua.id, e)}
+                          className="flex items-center space-x-1 hover:scale-105 transition-transform"
+                        >
+                          <Heart 
+                            className={`w-4 h-4 ${
+                              likedDuas.has(dua.id) 
+                                ? 'text-red-500 fill-current' 
+                                : 'text-gray-400 hover:text-red-500'
+                            }`} 
+                          />
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {likesCount[dua.id] !== undefined ? likesCount[dua.id] : (dua.likes_count || 0)}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
                     <div className="flex items-center justify-between">
                       <Link 
                         href={`/duas/${dua.id}`} 
@@ -474,6 +486,11 @@ export default function DuasPage() {
                             Edit
                           </Link>
                         )}
+                        <ReportContent 
+                          contentType="dua" 
+                          contentId={dua.id} 
+                          contentTitle={dua.title}
+                        />
                       </div>
                     </div>
                   </div>
@@ -491,7 +508,7 @@ export default function DuasPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12" />
+                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12 object-contain" />
                 <span className="text-xl font-bold">Tadabbur</span>
               </div>
               <p className="text-gray-400">

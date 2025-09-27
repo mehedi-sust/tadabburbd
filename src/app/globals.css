@@ -178,21 +178,52 @@ a {
 /* Scrolling text animation for long Arabic/Dua text */
 .scrolling-text {
   white-space: nowrap;
-  animation: scrollTextRTL 20s linear infinite;
+  animation: scrollTextRTL 45s linear infinite;
   direction: rtl;
+  display: inline-block;
+  min-width: 100%;
 }
 
 @keyframes scrollTextRTL {
   0% {
+    transform: translateX(-100%);
+  }
+  95% {
     transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Pause scroll on hover */
+.scrolling-text:hover {
+  animation-play-state: paused;
+}
+
+/* Bengali text scrolling animation */
+.scrolling-text-bangla {
+  white-space: nowrap;
+  animation: scrollTextBangla 40s linear infinite;
+  direction: ltr;
+  display: inline-block;
+  min-width: 100%;
+}
+
+@keyframes scrollTextBangla {
+  0% {
+    transform: translateX(100%);
+  }
+  95% {
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(-100%);
   }
 }
 
-/* Pause scroll on hover */
-.scrolling-text:hover {
+/* Pause Bengali scroll on hover */
+.scrolling-text-bangla:hover {
   animation-play-state: paused;
 }
 

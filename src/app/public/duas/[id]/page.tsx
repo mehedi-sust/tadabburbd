@@ -138,7 +138,7 @@ export default function PublicDuaDetailPage() {
                 </svg>
                 Back
               </Link>
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 ml-4" />
+              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 ml-4 object-contain" />
               <span className="text-xl font-bold gradient-text ml-2">Tadabbur</span>
             </div>
             

@@ -98,7 +98,7 @@ export default function DashboardPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8" />
+                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
                 <span className="text-xl font-bold gradient-text">Tadabbur</span>
               </div>
               
@@ -301,7 +301,7 @@ export default function DashboardPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12" />
+                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12 object-contain" />
                 <span className="text-xl font-bold">Tadabbur</span>
               </div>
               <p className="text-gray-400">

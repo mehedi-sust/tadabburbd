@@ -21,35 +21,35 @@ export default function HomePage() {
   const features = [
     {
       icon: BookOpen,
-      title: 'Dua Collection',
-      description: 'Store and organize your personal duas, supplications, and prayers with Arabic text, transliteration, and meanings.',
+      title: 'Personal Dua Collection',
+      description: 'Create and manage your personal collection of duas with Arabic text, transliteration, English and native language meanings.',
       color: 'text-primary-500'
     },
     {
       icon: Heart,
-      title: 'AI Guidance',
-      description: 'Get AI-powered insights and corrections for your religious content to ensure authenticity and accuracy.',
+      title: 'AI-Powered Analysis',
+      description: 'Get intelligent suggestions and corrections for your dua content using advanced AI to ensure accuracy and authenticity.',
       color: 'text-accent-500'
     },
     {
       icon: Users,
-      title: 'Expert Verification',
-      description: 'All public content is reviewed and verified by Islamic scholars to maintain religious authenticity.',
+      title: 'Community Features',
+      description: 'Share your duas publicly, like and favorite content from others, and build a community around authentic Islamic content.',
       color: 'text-primary-600'
     },
     {
       icon: Star,
-      title: 'Community Sharing',
-      description: 'Share your collections publicly and discover authentic duas from the community.',
+      title: 'Blog & Q&A Platform',
+      description: 'Write Islamic blogs, ask questions, and get answers from the community. Share knowledge and learn together.',
       color: 'text-accent-600'
     }
   ]
 
   const stats = [
-    { number: '1000+', label: 'Duas Available' },
-    { number: '500+', label: 'Verified Content' },
-    { number: '50+', label: 'Scholars' },
-    { number: '10K+', label: 'Users' }
+    { number: '✓', label: 'AI-Powered Analysis' },
+    { number: '✓', label: 'Expert Verification' },
+    { number: '✓', label: 'Community Sharing' },
+    { number: '✓', label: 'Secure & Private' }
   ]
 
   return (
@@ -59,7 +59,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8" />
+              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
               <span className="text-xl font-bold gradient-text">Tadabbur</span>
             </div>
             
@@ -105,8 +105,8 @@ export default function HomePage() {
               Companion
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Store, organize, and share authentic duas, supplications, and prayers. 
-              Get AI-powered guidance and expert verification for all your religious content.
+              Create your personal dua collection, get AI-powered content analysis, and connect with a community of believers. 
+              Share knowledge, ask questions, and grow in your Islamic journey.
             </p>
           </motion.div>
 
@@ -155,7 +155,7 @@ export default function HomePage() {
               Why Choose Tadabbur?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Experience the perfect blend of technology and Islamic tradition
+              Discover the features that make Tadabbur your trusted Islamic companion
             </p>
           </motion.div>
 
@@ -198,7 +198,7 @@ export default function HomePage() {
               Ready to Begin Your Spiritual Journey?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Join thousands of Muslims who trust Tadabbur for their daily spiritual needs
+              Start building your personal Islamic knowledge base today
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/auth/register" className="btn-primary text-lg px-8 py-4">
@@ -218,11 +218,11 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12" />
+                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-12 h-12 object-contain" />
                 <span className="text-xl font-bold">Tadabbur</span>
               </div>
               <p className="text-gray-400">
-                Your trusted companion for Islamic spiritual growth and authentic religious content.
+                A modern platform for Islamic learning, dua collection, and community building.
               </p>
             </div>
             
@@ -239,9 +239,9 @@ export default function HomePage() {
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="/scholars" className="hover:text-white transition-colors">Scholars</Link></li>
-                <li><Link href="/verified" className="hover:text-white transition-colors">Verified Content</Link></li>
-                <li><Link href="/guidelines" className="hover:text-white transition-colors">Guidelines</Link></li>
+                <li><Link href="/public/duas" className="hover:text-white transition-colors">Public Duas</Link></li>
+                <li><Link href="/public/blogs" className="hover:text-white transition-colors">Public Blogs</Link></li>
+                <li><Link href="/questions" className="hover:text-white transition-colors">Q&A Forum</Link></li>
                 <li><Link href="/support" className="hover:text-white transition-colors">Support</Link></li>
               </ul>
             </div>
