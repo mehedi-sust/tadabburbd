@@ -409,21 +409,10 @@ export default function DuasPage() {
                       )}
 
                       {(dua.native_meaning || dua.english_meaning) && (
-                        <div className="mb-4 relative overflow-hidden py-2 min-h-[2.5rem]">
-                          {(() => {
-                            const meaning = dua.native_meaning || dua.english_meaning;
-                            return meaning && meaning.length > 100 ? (
-                              <div className="w-full text-center">
-                                <div className="scrolling-text-bangla text-base text-gray-600 dark:text-gray-300">
-                                  {meaning}
-                                </div>
-                              </div>
-                            ) : (
-                              <div className="text-center text-base text-gray-600 dark:text-gray-300 py-1">
-                                {meaning}
-                              </div>
-                            );
-                          })()}
+                        <div className="mb-4">
+                          <p className="text-gray-600 dark:text-gray-300 text-base line-clamp-2">
+                            {dua.native_meaning || dua.english_meaning}
+                          </p>
                         </div>
                       )}
 
