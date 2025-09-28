@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { BookOpen, Plus, Search, Heart, Eye, Lock, CheckCircle, CheckCircle2, XCircle } from 'lucide-react'
 import AuthGuard from '@/components/auth-guard'
 import UserDropdown from '@/components/user-dropdown'
+import MobileNav from '@/components/MobileNav'
 import { authUtils } from '@/lib/auth'
 import { duasAPI } from '@/lib/api'
 import toast from 'react-hot-toast'
@@ -244,8 +245,10 @@ export default function DuasPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
-                <span className="text-xl font-bold gradient-text">Tadabbur</span>
+                <Link href="/dashboard" className="flex items-center space-x-2">
+                  <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
+                  <span className="text-xl font-bold gradient-text">Tadabbur</span>
+                </Link>
               </div>
               
               <nav className="hidden md:flex space-x-8">
@@ -264,10 +267,11 @@ export default function DuasPage() {
               </nav>
 
               <div className="flex items-center space-x-4">
-                <button className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors">
+                <button className="hidden md:block p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors">
                   <Search className="w-5 h-5" />
                 </button>
                 {user && <UserDropdown user={user} />}
+                <MobileNav />
               </div>
             </div>
           </div>

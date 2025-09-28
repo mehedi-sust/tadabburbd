@@ -99,8 +99,10 @@ export default function DashboardPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
-                <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
-                <span className="text-xl font-bold gradient-text">Tadabbur</span>
+                <Link href="/dashboard" className="flex items-center space-x-2">
+                  <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
+                  <span className="text-xl font-bold gradient-text">Tadabbur</span>
+                </Link>
               </div>
               
               <nav className="hidden md:flex space-x-8">
@@ -119,8 +121,12 @@ export default function DashboardPage() {
               </nav>
 
               <div className="flex items-center space-x-4">
-                <NotificationDropdown />
-                <UserDropdown user={user} />
+                <div className="hidden md:block">
+                  <NotificationDropdown />
+                </div>
+                <div className="hidden md:block">
+                  <UserDropdown user={user} />
+                </div>
                 <MobileNav />
               </div>
             </div>

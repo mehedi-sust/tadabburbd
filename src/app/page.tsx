@@ -56,7 +56,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <PublicNavbar className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-100/80 backdrop-blur-md" />
+      <PublicNavbar className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-dark-100" />
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">

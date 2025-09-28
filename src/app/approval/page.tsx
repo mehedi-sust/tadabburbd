@@ -170,11 +170,14 @@ export default function ContentApprovalPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <img 
-                src="/logo/taddabbur_logo.png" 
-                alt="Tadabbur" 
-                className="w-8 h-8 object-contain"
-              />
+              <Link href="/dashboard" className="flex items-center space-x-2">
+                <img 
+                  src="/logo/taddabbur_logo.png" 
+                  alt="Tadabbur" 
+                  className="w-8 h-8 object-contain"
+                />
+                <span className="text-xl font-bold gradient-text">Tadabbur</span>
+              </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                   Content Approval Panel

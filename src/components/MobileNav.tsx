@@ -55,11 +55,11 @@ export default function MobileNav({ className = '' }: MobileNavProps) {
   const isAuthenticated = authUtils.isAuthenticated()
 
   return (
-    <div className={`relative ${className}`} ref={navRef}>
+    <div className={`relative z-[90] ${className}`} ref={navRef}>
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMenu}
-        className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors"
+        className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors relative z-[90]"
       >
         {isOpen ? (
           <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
@@ -77,7 +77,7 @@ export default function MobileNav({ className = '' }: MobileNavProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              className="fixed inset-0 bg-black/70 z-[70] md:hidden"
               onClick={closeMenu}
             />
             
@@ -86,9 +86,20 @@ export default function MobileNav({ className = '' }: MobileNavProps) {
               initial={{ opacity: 0, x: '100%' }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-100 shadow-xl z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-100 shadow-2xl z-[80] md:hidden border-l border-gray-200 dark:border-dark-200"
+              style={{ 
+                backgroundColor: theme === 'dark' ? '#1a1a1a' : '#ffffff',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
+                opacity: 1
+              }}
             >
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full bg-white dark:bg-dark-100 relative" style={{ 
+                backgroundColor: theme === 'dark' ? '#1a1a1a' : '#ffffff',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
+                opacity: 1
+              }}>
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-dark-200">
                   <div className="flex items-center space-x-2">
