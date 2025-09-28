@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Eye, EyeOff, BookOpen, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
@@ -15,8 +15,13 @@ export default function LoginPage() {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const router = useRouter()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -81,8 +86,9 @@ export default function LoginPage() {
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors"
+            disabled={!mounted}
           >
-            {theme === 'dark' ? <Sun className="w-5 h-5 text-gray-900 dark:text-gray-300" /> : <Moon className="w-5 h-5 text-gray-900 dark:text-gray-300" />}
+            {mounted && theme === 'dark' ? <Sun className="w-5 h-5 text-gray-900 dark:text-gray-300" /> : <Moon className="w-5 h-5 text-gray-900 dark:text-gray-300" />}
           </button>
         </div>
 

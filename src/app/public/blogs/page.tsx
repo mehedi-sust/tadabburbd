@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { BookOpen, Search, User, Calendar, ArrowLeft, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { blogsAPI } from '@/lib/api'
+import PublicNavbar from '@/components/PublicNavbar'
 
 interface PublicBlog {
   id: string
@@ -53,39 +54,7 @@ export default function PublicBlogsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-50 arabic-pattern dark:arabic-pattern-dark">
       {/* Header */}
-      <header className="bg-white dark:bg-dark-100 border-b border-gray-200 dark:border-dark-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <ArrowLeft className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-              </Link>
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
-              <span className="text-xl font-bold gradient-text">Tadabbur</span>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <Link href="/public/duas" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                Duas
-              </Link>
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors"
-                disabled={!mounted}
-              >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-gray-900 dark:text-gray-300" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-900 dark:text-gray-300" />
-                )}
-              </button>
-              <Link href="/auth/login" className="btn-primary">
-                Sign In
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PublicNavbar showBackButton={true} backHref="/" />
 
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">

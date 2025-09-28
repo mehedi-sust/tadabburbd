@@ -8,6 +8,7 @@ import { BookOpen, Share2, Heart } from 'lucide-react'
 import { duasAPI } from '@/lib/api'
 import { authUtils } from '@/lib/auth'
 import toast from 'react-hot-toast'
+import PublicNavbar from '@/components/PublicNavbar'
 
 interface PublicDua {
   id: string
@@ -83,7 +84,7 @@ export default function PublicDuaDetailPage() {
   const loadDua = async (duaId: string) => {
     try {
       console.log('Loading public dua with ID:', duaId)
-      const response = await duasAPI.getDua(duaId)
+      const response = await duasAPI.getPublicDua(duaId)
       console.log('Public dua response:', response.data)
       
       // Check for both possible response formats from backend
@@ -128,29 +129,7 @@ export default function PublicDuaDetailPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-50 arabic-pattern dark:arabic-pattern-dark">
       {/* Header */}
-      <header className="bg-white dark:bg-dark-100 border-b border-gray-200 dark:border-dark-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Link href="/public/duas" className="inline-flex items-center text-gray-600 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back
-              </Link>
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 ml-4 object-contain" />
-              <span className="text-xl font-bold gradient-text ml-2">Tadabbur</span>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <button className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors">
-                <Share2 className="w-5 h-5" />
-              </button>
-              <Link href="/auth/login" className="btn-primary">Sign In</Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PublicNavbar showBackButton={true} backHref="/public/duas" />
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">

@@ -266,6 +266,15 @@ export default function QuestionsPage() {
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 Tadabbur. All rights reserved. Made with ❤️ for the Muslim community.</p>
+            <div className="mt-4">
+              <a 
+                href="mailto:mehedialhasan@gmail.com"
+                className="text-sm font-medium text-gray-300 hover:text-gray-200 transition-colors"
+                style={{ fontFamily: 'Amiri, serif' }}
+              >
+                Developed by Mehedi Al Hasan
+              </a>
+            </div>
           </div>
         </div>
       </footer>

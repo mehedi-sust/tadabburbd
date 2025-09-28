@@ -52,6 +52,7 @@ export const duasAPI = {
   getDuas: (params?: any) => api.get('/duas', { params }),
   getMyDuas: (params?: any) => api.get('/duas/my-duas', { params }),
   getDua: (id: string) => api.get(`/duas/${id}`),
+  getPublicDua: (id: string) => api.get(`/duas/public/${id}`),
   createDua: (data: any) => api.post('/duas', data),
   updateDua: (id: string, data: any) => api.put(`/duas/${id}`, data),
   deleteDua: (id: string) => api.delete(`/duas/${id}`),
@@ -71,6 +72,24 @@ export const blogsAPI = {
   updateBlog: (id: string, data: any) => api.put(`/blogs/${id}`, data),
   deleteBlog: (id: string) => api.delete(`/blogs/${id}`),
   getPopularTags: () => api.get('/blogs/tags/popular'),
+};
+
+// Approval API
+export const approvalAPI = {
+  getPendingContent: (params?: any) => api.get('/approval/pending', { params }),
+  getContentDetails: (type: string, id: string) => api.get(`/approval/${type}/${id}`),
+  approveContent: (type: string, id: string, data?: any) => api.post(`/approval/${type}/${id}/approve`, data),
+  rejectContent: (type: string, id: string, data: any) => api.post(`/approval/${type}/${id}/reject`, data),
+  getApprovalStats: () => api.get('/approval/stats'),
+};
+
+// Notifications API
+export const notificationsAPI = {
+  getNotifications: (params?: any) => api.get('/notifications', { params }),
+  markAsRead: (id: string) => api.put(`/notifications/${id}/read`),
+  markAllAsRead: () => api.put('/notifications/read-all'),
+  getUnreadCount: () => api.get('/notifications/unread-count'),
+  deleteNotification: (id: string) => api.delete(`/notifications/${id}`),
 };
 
 // Questions API

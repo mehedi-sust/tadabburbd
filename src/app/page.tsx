@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { BookOpen, Heart, Users, Star, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
+import PublicNavbar from '@/components/PublicNavbar'
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
@@ -55,40 +56,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-100/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
-              <span className="text-xl font-bold gradient-text">Tadabbur</span>
-            </div>
-            
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/public/duas" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                Duas
-              </Link>
-              <Link href="/public/blogs" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                Blogs
-              </Link>
-              <Link href="/auth/login" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                Q&A
-              </Link>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors"
-              >
-                {theme === 'dark' ? <Sun className="w-5 h-5 text-gray-900 dark:text-gray-300" /> : <Moon className="w-5 h-5 text-gray-900 dark:text-gray-300" />}
-              </button>
-              <Link href="/auth/login" className="btn-primary">
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PublicNavbar className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-100/80 backdrop-blur-md" />
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -212,7 +180,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Main Footer */}
       <footer className="bg-gray-900 dark:bg-dark-50 text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
@@ -259,6 +227,15 @@ export default function HomePage() {
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 Tadabbur. All rights reserved. Made with ❤️ for the Muslim community.</p>
+            <div className="mt-4">
+              <a 
+                href="mailto:mehedialhasan@gmail.com"
+                className="text-sm font-medium text-gray-300 hover:text-gray-200 transition-colors"
+                style={{ fontFamily: 'Amiri, serif' }}
+              >
+                Developed by Mehedi Al Hasan
+              </a>
+            </div>
           </div>
         </div>
       </footer>

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { BookOpen, Search, Eye, CheckCircle2, XCircle, ArrowLeft, Moon, Sun, Heart } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { duasAPI } from '@/lib/api'
+import PublicNavbar from '@/components/PublicNavbar'
 
 interface PublicDua {
   id: string
@@ -73,39 +74,7 @@ export default function PublicDuasPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-50 arabic-pattern dark:arabic-pattern-dark">
       {/* Header */}
-      <header className="bg-white dark:bg-dark-100 border-b border-gray-200 dark:border-dark-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <ArrowLeft className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-              </Link>
-              <img src="/logo/taddabbur_logo.png" alt="Tadabbur" className="w-8 h-8 object-contain" />
-              <span className="text-xl font-bold gradient-text">Tadabbur</span>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <Link href="/public/blogs" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors">
-                Blogs
-              </Link>
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-dark-200 hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200"
-                disabled={!mounted}
-              >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-gray-900 dark:text-gray-300" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-900 dark:text-gray-300" />
-                )}
-              </button>
-              <Link href="/auth/login" className="btn-primary">
-                Sign In
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PublicNavbar showBackButton={true} backHref="/" />
 
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
@@ -196,11 +165,11 @@ export default function PublicDuasPage() {
                       {dua.arabic_text && (
                         <div className="mb-4 relative overflow-hidden py-4 min-h-[3rem]">
                           {dua.arabic_text.length > 80 ? (
-                            <div className="scrolling-text text-center text-xl text-gray-900 dark:text-white arabic-font px-3">
+                            <div className="scrolling-text text-center text-3xl text-gray-900 dark:text-white arabic-font px-3">
                               {dua.arabic_text}
                             </div>
                           ) : (
-                            <div className="text-center text-xl text-gray-900 dark:text-white arabic-font py-2">
+                            <div className="text-center text-3xl text-gray-900 dark:text-white arabic-font py-2">
                               {dua.arabic_text}
                             </div>
                           )}
@@ -209,7 +178,7 @@ export default function PublicDuasPage() {
 
                       {(dua.native_meaning || dua.english_meaning) && (
                         <div className="mb-4">
-                          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
+                          <p className="text-gray-600 dark:text-gray-300 text-base line-clamp-2">
                             {dua.native_meaning || dua.english_meaning}
                           </p>
                         </div>
@@ -217,12 +186,19 @@ export default function PublicDuasPage() {
                     </div>
 
                     {/* Fixed Footer */}
-                    <div className="mt-auto pt-4 border-t border-gray-200 dark:border-dark-200">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          {new Date(dua.created_at).toLocaleDateString()}
-                        </span>
-                        <div className="flex items-center space-x-4">
+                    <div className="mt-auto border-t border-gray-200 dark:border-dark-200 px-6 py-3 bg-gray-50 dark:bg-dark-200">
+                      {/* Status and Author Info */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-2">
+                          <span className={`px-2 py-1 text-xs rounded-full ${
+                            dua.is_verified 
+                              ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                              : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                          }`}>
+                            {dua.is_verified ? 'Verified' : 'Pending'}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2">
                           <button
                             onClick={(e) => handleLike(dua.id, e)}
                             className="flex items-center space-x-1 hover:scale-105 transition-transform"
@@ -238,13 +214,20 @@ export default function PublicDuasPage() {
                               {dua.likes_count || '0'}
                             </span>
                           </button>
-                          <Link 
-                            href={`/public/duas/${dua.id}`}
-                            className="text-primary-500 hover:text-primary-600 font-medium text-sm"
-                          >
-                            View Details
-                          </Link>
                         </div>
+                      </div>
+                      
+                      {/* Action Buttons */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {new Date(dua.created_at).toLocaleDateString()}
+                        </span>
+                        <Link 
+                          href={`/public/duas/${dua.id}`}
+                          className="text-primary-500 hover:text-primary-600 font-medium text-sm"
+                        >
+                          View Details
+                        </Link>
                       </div>
                     </div>
                   </div>
